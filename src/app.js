@@ -2,21 +2,17 @@ const express = require("express");
 
 const app = express();
 
-
-app.get("/user",(req,res) => {
-    console.log(req.query);
-    console.log(req.params);
-    res.send("Hello is hello");
-})
-
-app.use("/a*b",(req,res) => {
-    res.send("Hello from the server!");
-});
+const { connectDb } = require("./config/database");
 
 
-
-
-
-app.listen(3000, () => {
+connectDb().then(() => {
+    console.log("Db Connected sucessfully");
+    app.listen(3000, () => {
     console.log("Server listening at port 3000");
 });
+})
+.catch((err) => {
+    console.log("db oconnecteed noooooottt" + err);
+});
+
+const { user } = require("./middlewares/auth");
