@@ -1,4 +1,4 @@
-const user = (req,res,next) => {
+const authCheck = (req,res,next) => {
      const token ='xyz';
     if(token != 'xyz'){
         res.status(404).send("Not Authorized man");
@@ -8,5 +8,5 @@ const user = (req,res,next) => {
 };
 
 module.exports = {
-    user,
+    authCheck,
 }

@@ -1,8 +1,23 @@
 const express = require("express");
-
-const app = express();
-
 const { connectDb } = require("./config/database");
+const app = express();
+const user = require("./models/user");
+
+app.post("/signUp",async (req,res) => {
+    const user1 = new user({
+        firstName : "Teja",
+        lastName: "Vershit",
+        age: 20
+    })
+
+    try{
+        await user1.save();
+        res.send("User saved sucessfully");
+    }
+    catch(e) {
+        res.status(400).send("jhejhs")
+    }
+})
 
 
 connectDb().then(() => {
@@ -15,4 +30,4 @@ connectDb().then(() => {
     console.log("db oconnecteed noooooottt" + err);
 });
 
-const { user } = require("./middlewares/auth");
+const { authCheck } = require("./middlewares/auth");
