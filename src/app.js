@@ -2,9 +2,18 @@ const express = require("express");
 
 const app = express();
 
-app.use("/",(req,res) => {
+
+app.get("/user",(req,res) => {
+    console.log(req.query);
+    console.log(req.params);
+    res.send("Hello is hello");
+})
+
+app.use("/a*b",(req,res) => {
     res.send("Hello from the server!");
 });
+
+
 
 
 
