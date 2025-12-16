@@ -10,8 +10,17 @@ const userSchema = new mongoose.Schema({
 
     age : {
         type: Number,
+    },
+
+    emailId: {
+        type: String,
+    },
+
+    password: {
+        type: String,
+        minLength: 4,
     }
-})
+}, {timestamps: true})
 
 const userModel = mongoose.model("user", userSchema);
 
