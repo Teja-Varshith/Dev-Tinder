@@ -6,7 +6,7 @@ const userAuth = async (req,res,next) => {
      
      const {token} = cookies;
 
-     const decodedMessage = await jwt.verify(token,"Teja");
+     const decodedMessage =  jwt.verify(token,"Teja");
 
      const{ _id } = decodedMessage;
 
