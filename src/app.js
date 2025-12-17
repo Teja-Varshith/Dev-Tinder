@@ -39,13 +39,13 @@ app.post("/logIn", async (req,res) => {
     }
     
 
-    const isAllowed = await bcrypt.compare(password,userExsists.password);
+    const isAllowed = userExsists.verifyPassword(password);
     console.log(isAllowed);
     if(!isAllowed){
         return res.status(404).send("Wrong Credentials");   
     }
 
-    const token = await jwt.sign({_id: userExsists._id}, "Teja");
+    const token = await userExsists.getJWT();
 
     res.cookie("token",token);
 
